@@ -8,3 +8,6 @@ Still far from complete but worth to try
 
 * **Usage**
   * python3 scanxss.py target_url
+
+
+You can add, delete or modify XSS Payloads by edit payloads.txt file
