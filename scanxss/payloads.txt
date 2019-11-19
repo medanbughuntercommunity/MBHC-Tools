@@ -1,0 +1,2 @@
+<Script>alert('hi')</scripT>
+<Script>alert(document.cookie)</scripT>
