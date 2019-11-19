@@ -1,4 +1,4 @@
-# XSS Scanner 0.1 beta
+# XSS Scanner
 Simple XSS Scanner by Deny Pradana
 
 Still far from complete but worth to try
