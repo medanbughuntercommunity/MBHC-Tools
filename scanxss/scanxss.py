@@ -3,6 +3,14 @@ import requests
 from pprint import pprint
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
+from colorama import init, Fore
+
+init()
+RED = Fore.RED
+GREEN = Fore.GREEN
+BLUE = Fore.BLUE
+RESET = Fore.RESET
+GRAY = Fore.LIGHTBLACK_EX
 
 def get_all_forms(url):
     soup = bs(requests.get(url).content, "html.parser")
@@ -43,7 +51,7 @@ def submit_form(form_details, url, value):
 
 def scan_xss(url):
     forms = get_all_forms(url)
-    print(f"[+] Detected {len(forms)} forms on {url}.")
+    print(f"{BLUE}[+] Detected {len(forms)} forms on {url}. {RESET}")
     inp = open("payloads.txt","r")
     for line in inp:
         js_script = line.strip()
@@ -53,7 +61,7 @@ def scan_xss(url):
             form_details = get_form_details(form)
             content = submit_form(form_details, url, js_script).content.decode()
             if js_script in content:
-                print(f"[+] XSS Detected on {url}")
+                print(f"{GREEN}[+] XSS Detected on {url} {RESET}")
                 print(f"[*] Form details:")
                 pprint(form_details)
                 is_vulnerable = True
@@ -63,14 +71,14 @@ def scan_xss(url):
 if __name__ == "__main__":
 
     url = sys.argv[1]
-    print("##################################")
-    print("##  __  __ ____  _    _  _____  ##")
-    print("## |  \/  |  _ \| |  | |/ ____| ##")
-    print("## | \  / | |_) | |__| | |      ##")
-    print("## | |\/| |  _ <|  __  | |      ##")
-    print("## | |  | | |_) | |  | | |____  ##")
-    print("## |_|  |_|____/|_|  |_|\_____| ##")
-    print("##                              ##")
-    print("## XSS Scanner ver 0.1 beta     ##")
-    print("##################################")
+    print(f"{RED}##################################")
+    print(f"##  __  __ ____  _    _  _____  ##")
+    print(f"## |  \/  |  _ \| |  | |/ ____| ##")
+    print(f"## | \  / | |_) | |__| | |      ##")
+    print(f"## | |\/| |  _ <|  __  | |      ##")
+    print(f"## | |  | | |_) | |  | | |____  ##")
+    print(f"## |_|  |_|____/|_|  |_|\_____| ##")
+    print(f"##                              ##")
+    print(f"## XSS Scanner ver 0.1 beta     ##")
+    print(f"################################## {RESET}")
     print(scan_xss(url))
