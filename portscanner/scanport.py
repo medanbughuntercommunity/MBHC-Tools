@@ -1,5 +1,6 @@
 import argparse
 import socket
+import port_services
 from colorama import init, Fore
 
 from threading import Thread, Lock
@@ -23,10 +24,15 @@ def port_scan(port):
         s.connect((host, port))
     except:
         with print_lock:
-            print(f"{GRAY}[-] {host:15}:{port:5} is closed {RESET}", end='\r')
+            print(f"{GRAY}[-] {host:15}:{port:5} is close {RESET}", end='\r')
     else:
         with print_lock:
-            print(f"{GREEN}[+] {host:15}:{port:5} is open {RESET}")
+            for element in port_services.services_array:
+                if element['portnumber'] == port:
+                        print(f"{GREEN}[+] {host:15}:{port:5} [OPEN] --> {element['portdesc']} ({element['portid']}) {RESET}")
+                        break
+            else:
+                print(f"{GREEN}[+] {host:15}:{port:5} [OPEN] --> Unknown Service (unknown) {RESET}")
     finally:
         s.close()
 
@@ -39,17 +45,21 @@ def scan_thread():
         q.task_done()
 
 def main(host, ports):
-    print(f"{RED}##################################")
-    print(f"##  __  __ ____  _    _  _____  ##")
-    print(f"## |  \/  |  _ \| |  | |/ ____| ##")
-    print(f"## | \  / | |_) | |__| | |      ##")
-    print(f"## | |\/| |  _ <|  __  | |      ##")
-    print(f"## | |  | | |_) | |  | | |____  ##")
-    print(f"## |_|  |_|____/|_|  |_|\_____| ##")
-    print(f"##                              ##")
-    print(f"## ScanPort ver 0.1 beta        ##")
-    print(f"## Open Port Scanner            ##")
-    print(f"##################################{RESET}")
+    print(f"{RED}#######################################")
+    print(f"##     __  __ ____  _    _  _____    ##")
+    print(f"##    |  \/  |  _ \| |  | |/ ____|   ##")
+    print(f"##    | \  / | |_) | |__| | |        ##")
+    print(f"##    | |\/| |  _ <|  __  | |        ##")
+    print(f"##    | |  | | |_) | |  | | |____    ##")
+    print(f"##    |_|  |_|____/|_|  |_|\_____|   ##")
+    print(f"##                                   ##")
+    print(f"## Open Port Scanner                 ##")
+    print(f"## Medan Bug Hunter Community        ##")
+    print(f"##                                   ##")
+    print(f"## By    : Deny Pradana              ##")
+    print(f"## Email : dp@denypradana.com        ##")
+    print(f"## Web   : https://denypradana.com   ##")
+    print(f"#######################################{RESET}")
     print("")
     print(f"{BLUE}RESULT : {RESET}")
     global q
