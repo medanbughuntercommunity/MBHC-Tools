@@ -1,377 +1,341 @@
 import json
 
-services_data = '[{"portnumber":1,"portid":"tcpmux",\
-                        "portdesc":"TCP Port Service Multiplexer"},\
-                    {"portnumber":2,"portid":"compressnet",\
-                        "portdesc":"Management Utility"},\
-                    {"portnumber":3,"portid":"compressnet",\
-                        "portdesc":"Compression Process"},\
-                    {"portnumber":5,"portid":"rje",\
-                        "portdesc":"Remote Job Entry"},\
-                    {"portnumber":7,"portid":"echo",\
-                        "portdesc":"Echo"},\
-                    {"portnumber":9,"portid":"discard",\
-                        "portdesc":"Sink Null"},\
-                    {"portnumber":11,"portid":"systat",\
-                        "portdesc":"Active Users"},\
-                    {"portnumber":13,"portid":"daytime",\
-                        "portdesc":"Daytime"},\
-                    {"portnumber":15,"portid":"netstat",\
-                        "portdesc":"Netstat"},\
-                    {"portnumber":17,"portid":"qotd",\
-                        "portdesc":"Quote of The Day"},\
-                    {"portnumber":18,"portid":"msp",\
-                        "portdesc":"Message Send Protocol"},\
-                    {"portnumber":19,"portid":"chargen",\
-                        "portdesc":"Character Generator"},\
-                    {"portnumber":20,"portid":"ftp-data",\
-                        "portdesc":"File Transfer Default Data"},\
-                    {"portnumber":21,"portid":"ftp",\
-                        "portdesc":"File Transfer Control"},\
-                    {"portnumber":22,"portid":"ssh",\
-                        "portdesc":"Secure Shell Login"},\
-                    {"portnumber":23,"portid":"telnet",\
-                        "portdesc":"Telnet"},\
-                    {"portnumber":24,"portid":"priv-mail",\
-                        "portdesc":"Private Mail System"},\
-                    {"portnumber":25,"portid":"smtp",\
-                        "portdesc":"Simple Mail Transfer"},\
-                    {"portnumber":26,"portid":"rsftp",\
-                        "portdesc":"RSFTP"},\
-                    {"portnumber":27,"portid":"nsw-fe",\
-                        "portdesc":"NSW User System FE"},\
-                    {"portnumber":29,"portid":"msg-icp",\
-                        "portdesc":"MSG ICP"},\
-                    {"portnumber":31,"portid":"msg-auth",\
-                        "portdesc":"MSG Authentication"},\
-                    {"portnumber":33,"portid":"dsp",\
-                        "portdesc":"Display Support Protocol"},\
-                    {"portnumber":35,"portid":"priv-print",\
-                        "portdesc":"Private Printer Server"},\
-                    {"portnumber":37,"portid":"time",\
-                        "portdesc":"Time Server"},\
-                    {"portnumber":38,"portid":"rap",\
-                        "portdesc":"Route Access Protocol"},\
-                    {"portnumber":39,"portid":"rlp",\
-                        "portdesc":"Resource Location Protocol"},\
-                    {"portnumber":41,"portid":"graphics",\
-                        "portdesc":"Graphics"},\
-                    {"portnumber":42,"portid":"nameserver",\
-                        "portdesc":"Host Name Server"},\
-                    {"portnumber":43,"portid":"whois",\
-                        "portdesc":"Whois"},\
-                    {"portnumber":44,"portid":"mpm-flags",\
-                        "portdesc":"MPM Flags Protocol"},\
-                    {"portnumber":45,"portid":"mpm",\
-                        "portdesc":"Message Processing Module"},\
-                    {"portnumber":46,"portid":"mpm-snd",\
-                        "portdesc":"MPM Default Send"},\
-                    {"portnumber":47,"portid":"ni-ftp",\
-                        "portdesc":"NI FTP"},\
-                    {"portnumber":48,"portid":"auditd",\
-                        "portdesc":"Digital Audit Daemon"},\
-                    {"portnumber":49,"portid":"tacacs",\
-                        "portdesc":"Login Host Protocol"},\
-                    {"portnumber":50,"portid":"re-mail-ck",\
-                        "portdesc":"Remote Mail Checking Protocol"},\
-                    {"portnumber":51,"portid":"la-maint",\
-                        "portdesc":"IMP Logical Address Maintenance"},\
-                    {"portnumber":52,"portid":"xns-time",\
-                        "portdesc":"XNS Time Protocol"},\
-                    {"portnumber":53,"portid":"domain",\
-                        "portdesc":"Domain Name Server"},\
-                    {"portnumber":54,"portid":"xns-ch",\
-                        "portdesc":"XNS Clearinghouse"},\
-                    {"portnumber":55,"portid":"isi-gl",\
-                        "portdesc":"ISI Graphics Language"},\
-                    {"portnumber":56,"portid":"xns-auth",\
-                        "portdesc":"XNS Authentication"},\
-                    {"portnumber":57,"portid":"priv-term",\
-                        "portdesc":"Private Terminal Access"},\
-                    {"portnumber":58,"portid":"xns-mail",\
-                        "portdesc":"XNS Mail"},\
-                    {"portnumber":59,"portid":"priv-file",\
-                        "portdesc":"Private File Service"},\
-                    {"portnumber":61,"portid":"ni-mail",\
-                        "portdesc":"NI Mail"},\
-                    {"portnumber":62,"portid":"acas",\
-                        "portdesc":"ACA Services"},\
-                    {"portnumber":63,"portid":"via-ftp",\
-                        "portdesc":"VIA System - FTP & whois++"},\
-                    {"portnumber":64,"portid":"covia",\
-                        "portdesc":"Communications Integrator"},\
-                    {"portnumber":65,"portid":"tacacs-ds",\
-                        "portdesc":"TACACS-Database Services"},\
-                    {"portnumber":66,"portid":"sqlnet",\
-                        "portdesc":"Oracle SQLNet"},\
-                    {"portnumber":67,"portid":"dhcps",\
-                        "portdesc":"DHCP/Bootstrap Protocol Server"},\
-                    {"portnumber":68,"portid":"dhcpc",\
-                        "portdesc":"DHCP/Bootstrap Protocol Client"},\
-                    {"portnumber":69,"portid":"tftp",\
-                        "portdesc":"Trivial File Transfer"},\
-                    {"portnumber":70,"portid":"gopher",\
-                        "portdesc":"Gopher"},\
-                    {"portnumber":71,"portid":"netrjs-1",\
-                        "portdesc":"Remote Job Service"},\
-                    {"portnumber":72,"portid":"netrjs-2",\
-                        "portdesc":"Remote Job Service"},\
-                    {"portnumber":73,"portid":"netrjs-3",\
-                        "portdesc":"Remote Job Service"},\
-                    {"portnumber":74,"portid":"netrjs-4",\
-                        "portdesc":"Remote Job Service"},\
-                    {"portnumber":75,"portid":"priv-dial",\
-                        "portdesc":"Private Dial out Service"},\
-                    {"portnumber":76,"portid":"deos",\
-                        "portdesc":"Distributed External Object Store"},\
-                    {"portnumber":77,"portid":"priv-rje",\
-                        "portdesc":"Private RJE Service"},\
-                    {"portnumber":78,"portid":"vettcp",\
-                        "portdesc":"VET TCP"},\
-                    {"portnumber":79,"portid":"finger",\
-                        "portdesc":"Finger"},\
-                    {"portnumber":80,"portid":"http",\
-                        "portdesc":"World Wide Web HTTP"},\
-                    {"portnumber":81,"portid":"hosts2-ns",\
-                        "portdesc":"HOSTS2 Name Server"},\
-                    {"portnumber":82,"portid":"xfer",\
-                        "portdesc":"XFER Utility"},\
-                    {"portnumber":83,"portid":"mit-ml-dev",\
-                        "portdesc":"MIT ML Device"},\
-                    {"portnumber":84,"portid":"ctf",\
-                        "portdesc":"Common Trace Facility"},\
-                    {"portnumber":85,"portid":"mit-ml-dev",\
-                        "portdesc":"MIT ML Device"},\
-                    {"portnumber":86,"portid":"mfcobol",\
-                        "portdesc":"Micro Focus Cobol"},\
-                    {"portnumber":87,"portid":"priv-term-l",\
-                        "portdesc":"Private Terminal Link"},\
-                    {"portnumber":88,"portid":"kerberos-sec",\
-                        "portdesc":"Kerberos"},\
-                    {"portnumber":89,"portid":"su-mit-tg",\
-                        "portdesc":"SU/MIT Telnet Gateway"},\
-                    {"portnumber":90,"portid":"dnsix",\
-                        "portdesc":"DNSIX Security Attribute Token Map"},\
-                    {"portnumber":91,"portid":"mit-dov",\
-                        "portdesc":"MIT Dover Spooler"},\
-                    {"portnumber":92,"portid":"npp",\
-                        "portdesc":"Network Printing Protocol"},\
-                    {"portnumber":93,"portid":"dcp",\
-                        "portdesc":"Device Control Protocol"},\
-                    {"portnumber":94,"portid":"objcall",\
-                        "portdesc":"Tivoli Object Dispatcher"},\
-                    {"portnumber":95,"portid":"supdup",\
-                        "portdesc":"BSD supdupd"},\
-                    {"portnumber":96,"portid":"dixie",\
-                        "portdesc":"DIXIE Protocol Specification"},\
-                    {"portnumber":97,"portid":"swift-rvf",\
-                        "portdesc":"Swift Remote Virtual File Protocol"},\
-                    {"portnumber":98,"portid":"linuxconf",\
-                        "portdesc":"TAC News"},\
-                    {"portnumber":99,"portid":"metagram",\
-                        "portdesc":"Metagram Relay"},\
-                    {"portnumber":100,"portid":"newacct",\
-                        "portdesc":"New ACCT"},\
-                    {"portnumber":101,"portid":"hostname",\
-                        "portdesc":"NIC Host Name Server"},\
-                    {"portnumber":102,"portid":"iso-tsap",\
-                        "portdesc":"ISO-TSAP"},\
-                    {"portnumber":103,"portid":"gppitnp",\
-                        "portdesc":"Genesis Point-to-Point Trans Net"},\
-                    {"portnumber":104,"portid":"acr-nema",\
-                        "portdesc":"ACR-NEMA Digital Imag. & Comm. 300"},\
-                    {"portnumber":105,"portid":"csnet-ns",\
-                        "portdesc":"CCSO Name Server Protocol"},\
-                    {"portnumber":106,"portid":"pop3pw",\
-                        "portdesc":"3COM-TSMUX"},\
-                    {"portnumber":107,"portid":"rtelnet",\
-                        "portdesc":"Remote Telnet Service"},\
-                    {"portnumber":108,"portid":"snagas",\
-                        "portdesc":"SNA Gateway Access Server"},\
-                    {"portnumber":109,"portid":"pop2",\
-                        "portdesc":"Post Office Protocol v2"},\
-                    {"portnumber":110,"portid":"pop2",\
-                        "portdesc":"Post Office Protocol v3"},\
-                    {"portnumber":111,"portid":"rpcbind",\
-                        "portdesc":"SUN Remote Procedure Call"},\
-                    {"portnumber":112,"portid":"mcidas",\
-                        "portdesc":"McIDAS Data Transmission Protocol"},\
-                    {"portnumber":113,"portid":"ident/auth",\
-                        "portdesc":"Authentication Service"},\
-                    {"portnumber":114,"portid":"audionews",\
-                        "portdesc":"Audio News Multicast"},\
-                    {"portnumber":115,"portid":"sftp",\
-                        "portdesc":"Simple File Transfer Protocol"},\
-                    {"portnumber":116,"portid":"ansanotify",\
-                        "portdesc":"ANSA REX Notify"},\
-                    {"portnumber":117,"portid":"uucp-path",\
-                        "portdesc":"UUCP Path Service"},\
-                    {"portnumber":118,"portid":"sqlserv",\
-                        "portdesc":"SQL Services"},\
-                    {"portnumber":119,"portid":"nntp",\
-                        "portdesc":"Network News Transfer Protocol"},\
-                    {"portnumber":120,"portid":"cfdptkt",\
-                        "portdesc":"CFDPTKT"},\
-                    {"portnumber":121,"portid":"erpc",\
-                        "portdesc":"Encore Expedited RPC"},\
-                    {"portnumber":122,"portid":"smakynet",\
-                        "portdesc":"SMAKYNET"},\
-                    {"portnumber":123,"portid":"ntp",\
-                        "portdesc":"Network Time Protocol"},\
-                    {"portnumber":124,"portid":"ansatrader",\
-                        "portdesc":"Ansa RX Trader"},\
-                    {"portnumber":125,"portid":"locus-map",\
-                        "portdesc":"Locus PC-Interface Net Map Server"},\
-                    {"portnumber":126,"portid":"unitary",\
-                        "portdesc":"Unisys Unitary Login"},\
-                    {"portnumber":127,"portid":"locus-con",\
-                        "portdesc":"Locus PC-Interface Conn Server"},\
-                    {"portnumber":128,"portid":"gss-xlicen",\
-                        "portdesc":"GSS X License Verification"},\
-                    {"portnumber":129,"portid":"pwdgen",\
-                        "portdesc":"Password Generator Protocol"},\
-                    {"portnumber":130,"portid":"cisco-fna",\
-                        "portdesc":"Cisco FNATIVE"},\
-                    {"portnumber":131,"portid":"cisco-tna",\
-                        "portdesc":"Cisco TNATIVE"},\
-                    {"portnumber":132,"portid":"cisco-sys",\
-                        "portdesc":"Cisco SYSMAINT"},\
-                    {"portnumber":133,"portid":"statsrv",\
-                        "portdesc":"Statistic Service"},\
-                    {"portnumber":134,"portid":"ingres-net",\
-                        "portdesc":"INGRES-NET Service"},\
-                    {"portnumber":135,"portid":"msrpc",\
-                        "portdesc":"Microsoft RPC Services"},\
-                    {"portnumber":136,"portid":"profile",\
-                        "portdesc":"PROFILE Naming Service"},\
-                    {"portnumber":137,"portid":"netbios-ns",\
-                        "portdesc":"NETBIOS Name Service"},\
-                    {"portnumber":138,"portid":"netbios-dgm",\
-                        "portdesc":"NETBIOS Datagram Service"},\
-                    {"portnumber":139,"portid":"netbios-ssn",\
-                        "portdesc":"NETBIOS Session Service"},\
-                    {"portnumber":140,"portid":"emfis-data",\
-                        "portdesc":"EMFIS Data Service"},\
-                    {"portnumber":141,"portid":"emfis-cntl",\
-                        "portdesc":"EMFIS Control Service"},\
-                    {"portnumber":142,"portid":"bl-idm",\
-                        "portdesc":"Britton-Lee IDM"},\
-                    {"portnumber":143,"portid":"imap",\
-                        "portdesc":"Internet Message Access Protocol"},\
-                    {"portnumber":144,"portid":"news",\
-                        "portdesc":"NewS Window System"},\
-                    {"portnumber":145,"portid":"uaac",\
-                        "portdesc":"UAAC Protocol"},\
-                    {"portnumber":146,"portid":"iso-tp0",\
-                        "portdesc":"ISO-IP0"},\
-                    {"portnumber":147,"portid":"iso-ip",\
-                        "portdesc":"ISO-IP"},\
-                    {"portnumber":148,"portid":"cronus",\
-                        "portdesc":"Cronus Support"},\
-                    {"portnumber":149,"portid":"aed-512",\
-                        "portdesc":"AED 512 Emulation Service"},\
-                    {"portnumber":150,"portid":"sql-net",\
-                        "portdesc":"SQL-NET"},\
-                    {"portnumber":151,"portid":"hems",\
-                        "portdesc":"HEMS"},\
-                    {"portnumber":152,"portid":"bftp",\
-                        "portdesc":"Background File Transfer Program"},\
-                    {"portnumber":153,"portid":"sgmp",\
-                        "portdesc":"SGMP"},\
-                    {"portnumber":154,"portid":"netsc-prod",\
-                        "portdesc":"NETSC"},\
-                    {"portnumber":155,"portid":"netsc-dev",\
-                        "portdesc":"NETSC"},\
-                    {"portnumber":156,"portid":"sqlsrv",\
-                        "portdesc":"SQL Service"},\
-                    {"portnumber":157,"portid":"knet-cmp",\
-                        "portdesc":"KNET"},\
-                    {"portnumber":158,"portid":"pcmail-srv",\
-                        "portdesc":"PCMail Server"},\
-                    {"portnumber":159,"portid":"nss-routing",\
-                        "portdesc":"NSS Routing"},\
-                    {"portnumber":160,"portid":"sgmp-traps",\
-                        "portdesc":"SGMP Traps"},\
-                    {"portnumber":161,"portid":"snmp",\
-                        "portdesc":"Simple Net MGMT Proto"},\
-                    {"portnumber":162,"portid":"snmp-traps",\
-                        "portdesc":"SNMP Traps"},\
-                    {"portnumber":163,"portid":"cmip-man",\
-                        "portdesc":"CMIP/TCP Manager"},\
-                    {"portnumber":164,"portid":"cmip-agent",\
-                        "portdesc":"CMIP/TCP Agent"},\
-                    {"portnumber":165,"portid":"xns-courier",\
-                        "portdesc":"Xerox"},\
-                    {"portnumber":166,"portid":"s-net",\
-                        "portdesc":"Sirius System"},\
-                    {"portnumber":167,"portid":"namp",\
-                        "portdesc":"NAMP"},\
-                    {"portnumber":168,"portid":"rsvd",\
-                        "portdesc":"RSVD"},\
-                    {"portnumber":169,"portid":"send",\
-                        "portdesc":"SEND"},\
-                    {"portnumber":170,"portid":"print-srv",\
-                        "portdesc":"Network PostScript"},\
-                    {"portnumber":171,"portid":"multiplex",\
-                        "portdesc":"Network Innovations Multiplex"},\
-                    {"portnumber":172,"portid":"cl-1",\
-                        "portdesc":"Network Innovations CL/1"},\
-                    {"portnumber":173,"portid":"xyplex-mux",\
-                        "portdesc":"Xyplex"},\
-                    {"portnumber":174,"portid":"mailq",\
-                        "portdesc":"MailQ"},\
-                    {"portnumber":175,"portid":"vmnet",\
-                        "portdesc":"VMNET"},\
-                    {"portnumber":176,"portid":"genrad-mux",\
-                        "portdesc":"Genrad-Mux"},\
-                    {"portnumber":177,"portid":"xdmcp",\
-                        "portdesc":"X Display Manager Control Protocol"},\
-                    {"portnumber":178,"portid":"nextstep",\
-                        "portdesc":"NextStep Window Server"},\
-                    {"portnumber":179,"portid":"bgp",\
-                        "portdesc":"Border Gateway Protocol"},\
-                    {"portnumber":180,"portid":"ris",\
-                        "portdesc":"Intergraph"},\
-                    {"portnumber":181,"portid":"unify",\
-                        "portdesc":"Unify"},\
-                    {"portnumber":182,"portid":"audit",\
-                        "portdesc":"Unisys Audit SITP"},\
-                    {"portnumber":183,"portid":"ocbinder",\
-                        "portdesc":"OC Binder"},\
-                    {"portnumber":184,"portid":"ocserver",\
-                        "portdesc":"OC Server"},\
-                    {"portnumber":185,"portid":"remote-kis",\
-                        "portdesc":"Remote KIS"},\
-                    {"portnumber":186,"portid":"kis",\
-                        "portdesc":"KIS Protocol"},\
-                    {"portnumber":187,"portid":"aci",\
-                        "portdesc":"Application Communication Interface"},\
-                    {"portnumber":188,"portid":"mumps",\
-                        "portdesc":"Plus Five Mumps"},\
-                    {"portnumber":189,"portid":"qft",\
-                        "portdesc":"Queued File Transport"},\
-                    {"portnumber":190,"portid":"gacp",\
-                        "portdesc":"gateway Access Control Protocol"},\
-                    {"portnumber":191,"portid":"prospero",\
-                        "portdesc":"Prospero Directory Service"},\
-                    {"portnumber":192,"portid":"osu-nms",\
-                        "portdesc":"OSU Network Monitoring System"},\
-                    {"portnumber":193,"portid":"srmp",\
-                        "portdesc":"Spider Remote Monitoring Protocol"},\
-                    {"portnumber":194,"portid":"irc",\
-                        "portdesc":"Internet Relay Chat Protocol"},\
-                    {"portnumber":195,"portid":"dn6-nlm-aud",\
-                        "portdesc":"DNSIX Network Level Module Audit"},\
-                    {"portnumber":196,"portid":"dn6-smm-red",\
-                        "portdesc":"DNSIX Session Mgt Module Audit Redir"},\
-                    {"portnumber":197,"portid":"dls",\
-                        "portdesc":"Directory Location Service"},\
-                    {"portnumber":198,"portid":"dls-mon",\
-                        "portdesc":"Directory Location Service Monitor"},\
-                    {"portnumber":199,"portid":"smux",\
-                        "portdesc":"SNMP Unix Multiplexer"},\
-                    {"portnumber":200,"portid":"src",\
-                        "portdesc":"IBM System Resource Controller"}\
+services_data = '[{"portid":"tcpmux","portdefaultnumber":1,\
+                        "portdesc":"TCP Port Service Multiplexer","portprotocol":"tcp"},\
+                    {"portid":"echo","portdefaultnumber":7,\
+                        "portdesc":"Echo","portprotocol":"tcp"},\
+                    {"portid":"discard","portdefaultnumber":9,\
+                        "portdesc":"Sink Null","portprotocol":"tcp"},\
+                    {"portid":"systat","portdefaultnumber":11,\
+                        "portdesc":"Active Users","portprotocol":"tcp"},\
+                    {"portid":"daytime","portdefaultnumber":13,\
+                        "portdesc":"Daytime","portprotocol":"tcp"},\
+                    {"portid":"netstat","portdefaultnumber":15,\
+                        "portdesc":"Netstat","portprotocol":"tcp"},\
+                    {"portid":"qotd","portdefaultnumber":17,\
+                        "portdesc":"Quote of The Day","portprotocol":"tcp"},\
+                    {"portid":"chargen","portdefaultnumber":19,\
+                        "portdesc":"Character Generator","portprotocol":"tcp"},\
+                    {"portid":"ftp-data","portdefaultnumber":20,\
+                        "portdesc":"File Transfer Default Data","portprotocol":"tcp"},\
+                    {"portid":"ftp","portdefaultnumber":21,\
+                        "portdesc":"File Transfer Control","portprotocol":"tcp"},\
+                    {"portid":"ssh","portdefaultnumber":22,\
+                        "portdesc":"Secure Shell Login","portprotocol":"tcp"},\
+                    {"portid":"telnet","portdefaultnumber":23,\
+                        "portdesc":"Telnet","portprotocol":"tcp"},\
+                    {"portid":"smtp","portdefaultnumber":25,\
+                        "portdesc":"Simple Mail Transfer","portprotocol":"tcp"},\
+                    {"portid":"time","portdefaultnumber":37,\
+                        "portdesc":"Time Server","portprotocol":"tcp"},\
+                    {"portid":"whois","portdefaultnumber":43,\
+                        "portdesc":"Whois","portprotocol":"tcp"},\
+                    {"portid":"tacacs","portdefaultnumber":49,\
+                        "portdesc":"Login Host Protocol","portprotocol":"tcp"},\
+                    {"portid":"domain","portdefaultnumber":53,\
+                        "portdesc":"Domain Name Server","portprotocol":"tcp"},\
+                    {"portid":"bootps","portdefaultnumber":67,\
+                        "portdesc":"DHCP/Bootstrap Protocol Server","portprotocol":"tcp"},\
+                    {"portid":"bootpc","portdefaultnumber":68,\
+                        "portdesc":"DHCP/Bootstrap Protocol Client","portprotocol":"tcp"},\
+                    {"portid":"tftp","portdefaultnumber":69,\
+                        "portdesc":"Trivial File Transfer","portprotocol":"tcp"},\
+                    {"portid":"gopher","portdefaultnumber":70,\
+                        "portdesc":"Internet Gopher","portprotocol":"tcp"},\
+                    {"portid":"finger","portdefaultnumber":79,\
+                        "portdesc":"Finger","portprotocol":"tcp"},\
+                    {"portid":"http","portdefaultnumber":80,\
+                        "portdesc":"World Wide Web HTTP","portprotocol":"tcp"},\
+                    {"portid":"kerberos","portdefaultnumber":88,\
+                        "portdesc":"Kerberos","portprotocol":"tcp"},\
+                    {"portid":"iso-tsap","portdefaultnumber":102,\
+                        "portdesc":"Part Of ISODE","portprotocol":"tcp"},\
+                    {"portid":"acr-nema","portdefaultnumber":104,\
+                        "portdesc":"ACR-NEMA Digital Imag. & Comm. 300","portprotocol":"tcp"},\
+                    {"portid":"pop3","portdefaultnumber":110,\
+                        "portdesc":"Post Office Protocol v3","portprotocol":"tcp"},\
+                    {"portid":"sunrpc","portdefaultnumber":111,\
+                        "portdesc":"SUN Remote Procedure Call","portprotocol":"tcp"},\
+                    {"portid":"auth","portdefaultnumber":113,\
+                        "portdesc":"Authentication Service","portprotocol":"tcp"},\
+                    {"portid":"nntp","portdefaultnumber":119,\
+                        "portdesc":"Network News Transfer Protocol","portprotocol":"tcp"},\
+                    {"portid":"ntp","portdefaultnumber":123,\
+                        "portdesc":"Network Time Protocol","portprotocol":"tcp"},\
+                    {"portid":"msrpc","portdefaultnumber":135,\
+                        "portdesc":"Microsoft RPC Services","portprotocol":"tcp"},\
+                    {"portid":"netbios-ns","portdefaultnumber":137,\
+                        "portdesc":"NETBIOS Name Service","portprotocol":"tcp"},\
+                    {"portid":"netbios-dgm","portdefaultnumber":138,\
+                        "portdesc":"NETBIOS Datagram Service","portprotocol":"tcp"},\
+                    {"portid":"netbios-ssn","portdefaultnumber":139,\
+                        "portdesc":"NETBIOS Session Service","portprotocol":"tcp"},\
+                    {"portid":"imap2","portdefaultnumber":143,\
+                        "portdesc":"Internet Message Access Protocol","portprotocol":"tcp"},\
+                    {"portid":"snmp","portdefaultnumber":161,\
+                        "portdesc":"Simple Net MGMT Proto","portprotocol":"tcp"},\
+                    {"portid":"snmp-trap","portdefaultnumber":162,\
+                        "portdesc":"SNMP Traps","portprotocol":"tcp"},\
+                    {"portid":"cmip-man","portdefaultnumber":163,\
+                        "portdesc":"CMIP/TCP Manager","portprotocol":"tcp"},\
+                    {"portid":"cmip-agent","portdefaultnumber":164,\
+                        "portdesc":"CMIP/TCP Agent","portprotocol":"tcp"},\
+                    {"portid":"mailq","portdefaultnumber":174,\
+                        "portdesc":"MailQ","portprotocol":"tcp"},\
+                    {"portid":"xdmcp","portdefaultnumber":177,\
+                        "portdesc":"X Display Manager Control Protocol","portprotocol":"tcp"},\
+                    {"portid":"bgp","portdefaultnumber":179,\
+                        "portdesc":"Border Gateway Protocol","portprotocol":"tcp"},\
+                    {"portid":"smux","portdefaultnumber":199,\
+                        "portdesc":"SNMP Unix Multiplexer","portprotocol":"tcp"},\
+                    {"portid":"qmtp","portdefaultnumber":209,\
+                        "portdesc":"Quick Mail Transfer Protocol","portprotocol":"tcp"},\
+                    {"portid":"z3950","portdefaultnumber":210,\
+                        "portdesc":"NISO Z39.50 database","portprotocol":"tcp"},\
+                    {"portid":"ipx","portdefaultnumber":213,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"ptp-event","portdefaultnumber":319,\
+                        "portdesc":"PTP-EVENT","portprotocol":"tcp"},\
+                    {"portid":"ptp-general","portdefaultnumber":320,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"pawserv","portdefaultnumber":345,\
+                        "portdesc":"Perf Analysis Workbench","portprotocol":"tcp"},\
+                    {"portid":"zserv","portdefaultnumber":346,\
+                        "portdesc":"Zebra Server","portprotocol":"tcp"},\
+                    {"portid":"rpc2portmap","portdefaultnumber":369,\
+                        "portdesc":"Coda Portmapper","portprotocol":"tcp"},\
+                    {"portid":"codaauth2","portdefaultnumber":370,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"clearcase","portdefaultnumber":371,\
+                        "portdesc":"Clearcase","portprotocol":"tcp"},\
+                    {"portid":"ldap","portdefaultnumber":389,\
+                        "portdesc":"Lightweight Directory Access Protocol","portprotocol":"tcp"},\
+                    {"portid":"svrloc","portdefaultnumber":427,\
+                        "portdesc":"Server Location","portprotocol":"tcp"},\
+                    {"portid":"https","portdefaultnumber":443,\
+                        "portdesc":"World Wide Web HTTPS","portprotocol":"tcp"},\
+                    {"portid":"snpp","portdefaultnumber":444,\
+                        "portdesc":"Simple Network Paging Protocol","portprotocol":"tcp"},\
+                    {"portid":"microsoft-ds","portdefaultnumber":445,\
+                        "portdesc":"Microsoft Naked CIFS","portprotocol":"tcp"},\
+                    {"portid":"kpasswd","portdefaultnumber":464,\
+                        "portdesc":"Kerberos","portprotocol":"tcp"},\
+                    {"portid":"submissions","portdefaultnumber":465,\
+                        "portdesc":"Submissions over TLS","portprotocol":"tcp"},\
+                    {"portid":"saft","portdefaultnumber":487,\
+                        "portdesc":"Simple Asynchronous File Transfer","portprotocol":"tcp"},\
+                    {"portid":"isakmp","portdefaultnumber":500,\
+                        "portdesc":"IPSEC Key Management","portprotocol":"tcp"},\
+                    {"portid":"rtsp","portdefaultnumber":554,\
+                        "portdesc":"Real Time Stream Control Protocol","portprotocol":"tcp"},\
+                    {"portid":"nqs","portdefaultnumber":607,\
+                        "portdesc":"Network Queuing System","portprotocol":"tcp"},\
+                    {"portid":"asf-rmcp","portdefaultnumber":623,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"qmqp","portdefaultnumber":628,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"ipp","portdefaultnumber":631,\
+                        "portdesc":"IPX","portprotocol":"tcp"},\
+                    {"portid":"exec","portdefaultnumber":512,\
+                        "portdesc":"COMSAT","portprotocol":"tcp"},\
+                    {"portid":"login","portdefaultnumber":513,\
+                        "portdesc":"BSD rlogind","portprotocol":"tcp"},\
+                    {"portid":"shell","portdefaultnumber":514,\
+                        "portdesc":"CMD Syslog","portprotocol":"tcp"},\
+                    {"portid":"printer","portdefaultnumber":515,\
+                        "portdesc":"Line Printer Spooler","portprotocol":"tcp"},\
+                    {"portid":"talk","portdefaultnumber":517,\
+                        "portdesc":"Talk","portprotocol":"tcp"},\
+                    {"portid":"ntalk","portdefaultnumber":518,\
+                        "portdesc":"Talk Daemon","portprotocol":"tcp"},\
+                    {"portid":"efs","portdefaultnumber":520,\
+                        "portdesc":"Local Routing Process","portprotocol":"tcp"},\
+                    {"portid":"route","portdefaultnumber":520,\
+                        "portdesc":"Router Routed --RIP","portprotocol":"udp"},\
+                    {"portid":"gdomap","portdefaultnumber":538,\
+                        "portdesc":"GDO MAP","portprotocol":"tcp"},\
+                    {"portid":"uucp","portdefaultnumber":540,\
+                        "portdesc":"UUCP Daemon","portprotocol":"tcp"},\
+                    {"portid":"klogin","portdefaultnumber":543,\
+                        "portdesc":"Kerberized rlogind","portprotocol":"tcp"},\
+                    {"portid":"kshell","portdefaultnumber":544,\
+                        "portdesc":"Kerberized rsh","portprotocol":"tcp"},\
+                    {"portid":"dhcpv6-client","portdefaultnumber":546,\
+                        "portdesc":"DHCP v6 Client","portprotocol":"udp"},\
+                    {"portid":"dhcpv6-server","portdefaultnumber":547,\
+                        "portdesc":"DHCP v6 Server","portprotocol":"udp"},\
+                    {"portid":"afpovertcp","portdefaultnumber":548,\
+                        "portdesc":"AFP Over TCP","portprotocol":"tcp"},\
+                    {"portid":"nntps","portdefaultnumber":563,\
+                        "portdesc":"NNTP Over SSL","portprotocol":"tcp"},\
+                    {"portid":"submission","portdefaultnumber":587,\
+                        "portdesc":"Submission","portprotocol":"tcp"},\
+                    {"portid":"ldaps","portdefaultnumber":636,\
+                        "portdesc":"LDAP Over SSL","portprotocol":"tcp"},\
+                    {"portid":"tinc","portdefaultnumber":655,\
+                        "portdesc":"TINC Control Port","portprotocol":"tcp"},\
+                    {"portid":"silc","portdefaultnumber":706,\
+                        "portdesc":"Secure Internet Live Conferencing","portprotocol":"tcp"},\
+                    {"portid":"kerberos-adm","portdefaultnumber":749,\
+                        "portdesc":"Kerberos kadmin","portprotocol":"tcp"},\
+                    {"portid":"domain-s","portdefaultnumber":853,\
+                        "portdesc":"DNS Over TLS","portprotocol":"tcp"},\
+                    {"portid":"ftps-data","portdefaultnumber":989,\
+                        "portdesc":"FTP Over SSL (Data)","portprotocol":"tcp"},\
+                    {"portid":"ftps","portdefaultnumber":990,\
+                        "portdesc":"FTP Over SSL","portprotocol":"tcp"},\
+                    {"portid":"telnets","portdefaultnumber":992,\
+                        "portdesc":"Telnet Over SSL","portprotocol":"tcp"},\
+                    {"portid":"imaps","portdefaultnumber":993,\
+                        "portdesc":"IMAP Over SSL","portprotocol":"tcp"},\
+                    {"portid":"pop3s","portdefaultnumber":995,\
+                        "portdesc":"POP-3 Over SSL","portprotocol":"tcp"},\
+                    {"portid":"socks","portdefaultnumber":1080,\
+                        "portdesc":"SOCKS Proxy Server","portprotocol":"tcp"},\
+                    {"portid":"proofd","portdefaultnumber":1093,\
+                        "portdesc":"PROOFD","portprotocol":"tcp"},\
+                    {"portid":"rootd","portdefaultnumber":1094,\
+                        "portdesc":"ROOTD","portprotocol":"tcp"},\
+                    {"portid":"openvpn","portdefaultnumber":1194,\
+                        "portdesc":"OpenVPN","portprotocol":"tcp"},\
+                    {"portid":"rmiregistry","portdefaultnumber":1099,\
+                        "portdesc":"Java RMI Registry","portprotocol":"tcp"},\
+                    {"portid":"lotusnote","portdefaultnumber":1352,\
+                        "portdesc":"Lotus Note","portprotocol":"tcp"},\
+                    {"portid":"ms-sql-s","portdefaultnumber":1433,\
+                        "portdesc":"Microsoft SQL Server","portprotocol":"tcp"},\
+                    {"portid":"ms-sql-m","portdefaultnumber":1434,\
+                        "portdesc":"Microsoft SQL Monitor","portprotocol":"tcp"},\
+                    {"portid":"ingreslock","portdefaultnumber":1524,\
+                        "portdesc":"Ingres Lock","portprotocol":"tcp"},\
+                    {"portid":"datametrics","portdefaultnumber":1645,\
+                        "portdesc":"Old Radius","portprotocol":"tcp"},\
+                    {"portid":"sa-msg-port","portdefaultnumber":1646,\
+                        "portdesc":"Old Radius Accounting","portprotocol":"tcp"},\
+                    {"portid":"kermit","portdefaultnumber":1649,\
+                        "portdesc":"Kermit","portprotocol":"tcp"},\
+                    {"portid":"groupwise","portdefaultnumber":1677,\
+                        "portdesc":"Groupwise","portprotocol":"tcp"},\
+                    {"portid":"l2f","portdefaultnumber":1701,\
+                        "portdesc":"L2TP","portprotocol":"tcp"},\
+                    {"portid":"radius","portdefaultnumber":1812,\
+                        "portdesc":"Radius","portprotocol":"tcp"},\
+                    {"portid":"radius-acct","portdefaultnumber":1813,\
+                        "portdesc":"Radius Accounting","portprotocol":"tcp"},\
+                    {"portid":"cisco-sccp","portdefaultnumber":2000,\
+                        "portdesc":"Cisco SCCP","portprotocol":"tcp"},\
+                    {"portid":"nfs","portdefaultnumber":2049,\
+                        "portdesc":"Network File System","portprotocol":"tcp"},\
+                    {"portid":"gnunet","portdefaultnumber":2086,\
+                        "portdesc":"GNUnet","portprotocol":"tcp"},\
+                    {"portid":"rtcm-sc104","portdefaultnumber":2101,\
+                        "portdesc":"RTCM SC-104 IANA","portprotocol":"tcp"},\
+                    {"portid":"gsigatekeeper","portdefaultnumber":2119,\
+                        "portdesc":"GSI gatekeeper","portprotocol":"tcp"},\
+                    {"portid":"gris","portdefaultnumber":2135,\
+                        "portdesc":"Grid Resource Information Server","portprotocol":"tcp"},\
+                    {"portid":"cvspserver","portdefaultnumber":2401,\
+                        "portdesc":"CVS Client/Server Operations","portprotocol":"tcp"},\
+                    {"portid":"mysql","portdefaultnumber":3306,\
+                        "portdesc":"MySQL","portprotocol":"tcp"},\
+                    {"portid":"ms-wbt-server","portdefaultnumber":3389,\
+                        "portdesc":"Microsoft Remote Display Protocol","portprotocol":"tcp"},\
+                    {"portid":"nut","portdefaultnumber":3493,\
+                        "portdesc":"Network UPS Tool","portprotocol":"tcp"},\
+                    {"portid":"svn","portdefaultnumber":3690,\
+                        "portdesc":"Subversion Protocol","portprotocol":"tcp"},\
+                    {"portid":"sysrq","portdefaultnumber":4094,\
+                        "portdesc":"Sysrq Daemon","portprotocol":"tcp"},\
+                    {"portid":"remctl","portdefaultnumber":4373,\
+                        "portdesc":"Remote Authenticated Command Service","portprotocol":"tcp"},\
+                    {"portid":"ipsec-nat-t","portdefaultnumber":4500,\
+                        "portdesc":"IPsec NAT-Traversal","portprotocol":"tcp"},\
+                    {"portid":"radmin-port","portdefaultnumber":4899,\
+                        "portdesc":"RAdmin Port","portprotocol":"tcp"},\
+                    {"portid":"xmpp-client","portdefaultnumber":5222,\
+                        "portdesc":"Jabber Client Connection","portprotocol":"tcp"},\
+                    {"portid":"xmpp-server","portdefaultnumber":5269,\
+                        "portdesc":"Jabber Server Connection","portprotocol":"tcp"},\
+                    {"portid":"mdns","portdefaultnumber":5353,\
+                        "portdesc":"Multicast DNS","portprotocol":"tcp"},\
+                    {"portid":"postgresql","portdefaultnumber":5432,\
+                        "portdesc":"PostgrSQL","portprotocol":"tcp"},\
+                    {"portid":"x11","portdefaultnumber":6000,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-1","portdefaultnumber":6001,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-2","portdefaultnumber":6002,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-3","portdefaultnumber":6003,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-4","portdefaultnumber":6004,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-5","portdefaultnumber":6005,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-6","portdefaultnumber":6006,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"x11-7","portdefaultnumber":6007,\
+                        "portdesc":"X Window System","portprotocol":"tcp"},\
+                    {"portid":"gnutella-svc","portdefaultnumber":6346,\
+                        "portdesc":"GNUtella SVC","portprotocol":"tcp"},\
+                    {"portid":"gnutella-rtr","portdefaultnumber":6347,\
+                        "portdesc":"GNUtella RTR","portprotocol":"tcp"},\
+                    {"portid":"mysql-proxy","portdefaultnumber":6446,\
+                        "portdesc":"MySQL Proxy","portprotocol":"tcp"},\
+                    {"portid":"ircs-u","portdefaultnumber":6697,\
+                        "portdesc":"IRC Via TLS/SSL","portprotocol":"tcp"},\
+                    {"portid":"afs3-fileserver","portdefaultnumber":7000,\
+                        "portdesc":"File Server","portprotocol":"tcp"},\
+                    {"portid":"afs3-callback","portdefaultnumber":7001,\
+                        "portdesc":"Callback to Cache Managers","portprotocol":"tcp"},\
+                    {"portid":"afs3-prserver","portdefaultnumber":7002,\
+                        "portdesc":"Users & Groups Database","portprotocol":"tcp"},\
+                    {"portid":"afs3-vlserver","portdefaultnumber":7003,\
+                        "portdesc":"Volume Location Database","portprotocol":"tcp"},\
+                    {"portid":"afs3-kaserver","portdefaultnumber":7004,\
+                        "portdesc":"AFS/Kerberos Authentication","portprotocol":"tcp"},\
+                    {"portid":"afs3-volser","portdefaultnumber":7005,\
+                        "portdesc":"Volume Management Server","portprotocol":"tcp"},\
+                    {"portid":"afs3-errors","portdefaultnumber":7006,\
+                        "portdesc":"Error Interpretation Service","portprotocol":"tcp"},\
+                    {"portid":"afs3-bos","portdefaultnumber":7007,\
+                        "portdesc":"Basic Overseer Process","portprotocol":"tcp"},\
+                    {"portid":"afs3-update","portdefaultnumber":7008,\
+                        "portdesc":"Server-to-Server Updater","portprotocol":"tcp"},\
+                    {"portid":"afs3-rmtsys","portdefaultnumber":7009,\
+                        "portdesc":"Remote Cache Manager Service","portprotocol":"tcp"},\
+                    {"portid":"font-service","portdefaultnumber":7100,\
+                        "portdesc":"X Font Service","portprotocol":"tcp"},\
+                    {"portid":"http-alt","portdefaultnumber":8080,\
+                        "portdesc":"WWW Caching Service","portprotocol":"tcp"},\
+                    {"portid":"xmms2","portdefaultnumber":9667,\
+                        "portdesc":"Cross-Platform Music Multiplexing System","portprotocol":"tcp"},\
+                    {"portid":"nbd","portdefaultnumber":10809,\
+                        "portdesc":"Linux Network Block Device","portprotocol":"tcp"},\
+                    {"portid":"zabbix-agent","portdefaultnumber":10050,\
+                        "portdesc":"Zabbix Agent","portprotocol":"tcp"},\
+                    {"portid":"zabbix-trapper","portdefaultnumber":10051,\
+                        "portdesc":"Zabbix Trapper","portprotocol":"tcp"},\
+                    {"portid":"hkp","portdefaultnumber":11371,\
+                        "portdesc":"OpenPGP HTTP Keyserver","portprotocol":"tcp"},\
+                    {"portid":"db-lsp","portdefaultnumber":17500,\
+                        "portdesc":"Dropbox LanSync Protocol","portprotocol":"tcp"},\
+                    {"portid":"webmin","portdefaultnumber":10000,\
+                        "portdesc":"Webmin","portprotocol":"tcp"},\
+                    {"portid":"kerberos4","portdefaultnumber":750,\
+                        "portdesc":"Kerberos (Server)","portprotocol":"tcp"},\
+                    {"portid":"kerberos-master","portdefaultnumber":751,\
+                        "portdesc":"Kerberos Authentication","portprotocol":"tcp"},\
+                    {"portid":"passwd-server","portdefaultnumber":752,\
+                        "portdesc":"Kerberos passwd server","portprotocol":"udp"},\
+                    {"portid":"krb-prop","portdefaultnumber":754,\
+                        "portdesc":"Kerberos Slave Propagation","portprotocol":"tcp"},\
+                    {"portid":"ircd","portdefaultnumber":6667,\
+                        "portdesc":"Internet Relay Chat","portprotocol":"tcp"},\
+                    {"portid":"git","portdefaultnumber":9418,\
+                        "portdesc":"GIT Version Control System","portprotocol":"tcp"},\
+                    {"portid":"vnc","portdefaultnumber":5900,\
+                        "portdesc":"Virtual Network Computer Display","portprotocol":"tcp"}\
                         ]'
 
 services_array = json.loads(services_data)

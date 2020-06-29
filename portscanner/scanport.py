@@ -28,9 +28,14 @@ def port_scan(port):
     else:
         with print_lock:
             for element in port_services.services_array:
-                if element['portnumber'] == port:
+                #if element['portnumber'] == port:
+                try:
+                    service = socket.getservbyport(port)
+                    if element['portid'] == service:
                         print(f"{GREEN}[+] {host:15}:{port:5} [OPEN] --> {element['portdesc']} ({element['portid']}) {RESET}")
                         break
+                except:
+                    continue
             else:
                 print(f"{GREEN}[+] {host:15}:{port:5} [OPEN] --> Unknown Service (unknown) {RESET}")
     finally:
