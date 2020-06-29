@@ -1,19 +1,25 @@
 import argparse
 import socket
+import time
 import port_services
-from colorama import init, Fore
 
+from datetime import datetime
+from colorama import init, Fore
 from threading import Thread, Lock
 from queue import Queue
 
 init()
-RED = Fore.RED
-GREEN = Fore.GREEN
-BLUE = Fore.BLUE
+RED = Fore.LIGHTRED_EX
+YELLOW = Fore.LIGHTYELLOW_EX
+GREEN = Fore.LIGHTGREEN_EX
+BLUE = Fore.LIGHTBLUE_EX
+WHITE = Fore.LIGHTWHITE_EX
 RESET = Fore.RESET
 GRAY = Fore.LIGHTBLACK_EX
 
 N_THREADS = 200
+
+PROG_VER = 0.3
 
 q = Queue()
 print_lock = Lock()
@@ -28,7 +34,6 @@ def port_scan(port):
     else:
         with print_lock:
             for element in port_services.services_array:
-                #if element['portnumber'] == port:
                 try:
                     service = socket.getservbyport(port)
                     if element['portid'] == service:
@@ -50,21 +55,25 @@ def scan_thread():
         q.task_done()
 
 def main(host, ports):
-    print(f"{RED}#######################################")
-    print(f"##     __  __ ____  _    _  _____    ##")
-    print(f"##    |  \/  |  _ \| |  | |/ ____|   ##")
-    print(f"##    | \  / | |_) | |__| | |        ##")
-    print(f"##    | |\/| |  _ <|  __  | |        ##")
-    print(f"##    | |  | | |_) | |  | | |____    ##")
-    print(f"##    |_|  |_|____/|_|  |_|\_____|   ##")
-    print(f"##                                   ##")
-    print(f"## Open Port Scanner                 ##")
-    print(f"## Medan Bug Hunter Community        ##")
-    print(f"##                                   ##")
-    print(f"## By    : Deny Pradana              ##")
-    print(f"## Email : dp@denypradana.com        ##")
-    print(f"## Web   : https://denypradana.com   ##")
-    print(f"#######################################{RESET}")
+    start_time = time.time()
+    print(f"{RED}########################################")
+    print(f"##     __  __ ____  _    _  _____     ##")
+    print(f"##    |  \/  |  _ \| |  | |/ ____|    ##")
+    print(f"##    | \  / | |_) | |__| | |         ##")
+    print(f"##    | |\/| |  _ <|  __  | |         ##")
+    print(f"##    | |  | | |_) | |  | | |____     ##")
+    print(f"##    |_|  |_|____/|_|  |_|\_____|    ##")
+    print(f"##                                    ##")
+    print(f"## Open Port Scanner                  ##")
+    print(f"## Medan Bug Hunter Community         ##")
+    print(f"##                                    ##")
+    print(f"## By    : Deny Pradana               ##")
+    print(f"## Email : dp@denypradana.com         ##")
+    print(f"## Web   : https://denypradana.com    ##")
+    print(f"########################################{RESET}")
+    print(f"{WHITE}Program Version : {PROG_VER}{RESET}")
+    print("")
+    print(f"{YELLOW}Scan Started At {datetime.now().strftime('%H:%M:%S')} {datetime.now().strftime('%d-%m-%Y')}{RESET}")
     print("")
     print(f"{BLUE}RESULT : {RESET}")
     global q
@@ -77,6 +86,8 @@ def main(host, ports):
         q.put(worker)
     
     q.join()
+    
+    print(f"{YELLOW}[=] Scan Finished At {datetime.now().strftime('%H:%M:%S')} {datetime.now().strftime('%d-%m-%Y')}. Total Time : {round(time.time() - start_time,1)} Seconds{RESET}")
 
 
 if __name__ == "__main__":
